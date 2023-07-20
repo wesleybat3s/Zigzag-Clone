@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ana Sayfa</title>
+    <link rel="stylesheet" href="css/cafer.css">
+    <style>
+        body {
+            background-image: url("https://1.bp.blogspot.com/-MnAlgfAN6SA/WFg3D76lJ7I/AAAAAAAANnI/zJJl44oWxCMAYi7oeB6VqMXrVuI5ItdewCLcB/s1600/black-background-4.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .logo {
+            max-width: 150px;
+            height: auto;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .content {
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .login-input {
+            margin-bottom: 5px;
+        }
+
+        .login-button {
+            padding: 5px 10px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: rgb(239, 239, 239);
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://www.zfarulman.com/static/img/zfa-logo-trans.png" alt="Logo" class="logo">
+    </header>
+
+    <div class="content">
+        <h1>ZFA B2B!</h1>
+        <p>Hayat Seninle Döner.</p>
+    </div>
+
+    <div class="login-container">
+        <form class="login-form" method="post" action="/login">
+            <input type="text" placeholder="Kullanıcı Adı" class="login-input" id="username" name="username">
+            <input type="password" placeholder="Şifre" class="login-input" id="password" name="password">
+            <button class="login-button" type="submit">Giriş</button>
+        </form>
+        {% if error %}
+            <p class="error-message">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+
+        .logo {
+            float: right;
+            max-width: 200px;
+            height: auto;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .navbar .navbar-brand {
+            color: #fff;
+        }
+
+        .navbar .navbar-nav > li > a {
+            color: #fff;
+        }
+
+        .navbar .navbar-nav > li > a:hover {
+            color: #f8f8f8;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Admin Panel</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ana Sayfa</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" />
+
+    <style>
+        body {
+            background-image: url("https://1.bp.blogspot.com/-MnAlgfAN6SA/WFg3D76lJ7I/AAAAAAAANnI/zJJl44oWxCMAYi7oeB6VqMXrVuI5ItdewCLcB/s1600/black-background-4.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            background-color: #333;
+        }
+
+        .logo {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .search-container {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            width: 300px;
+            font-size: 14px;
+        }
+
+        .search-button {
+            padding: 8px 20px;
+            border: 1px solid #ccc;
+            border-radius: 0 5px 5px 0;
+            background-color: #f0f0f0;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .navigation-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .navigation-link {
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navigation-link:hover {
+            color: #ccc;
+        }
+
+        .product-table {
+            margin-top: 20px;
+            width: 80%;
+            border-collapse: collapse;
+            background-color: white; /* Tablo rengi beyaz */
+        }
+
+        .product-table th, .product-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product-table th {
+            background-color: #f0f0f0;
+        }
+
+        .product-card {
+            margin-bottom: 10px;
+        }
+
+        .total-price {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .product-table {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="search-container">
+        <input type="text" placeholder="Ürün Ara" class="search-input" id="search-input">
+        <button class="search-button" onclick="searchProducts()">Ara</button>
+    </div>
+
+    <div class="navigation-links">
+        <a href="/" class="navigation-link">Ana Sayfa</a>
+        <a href="/takip" class="navigation-link">Kargom Nerede</a>
+        <!-- Diğer bağlantıları buraya ekleyebilirsiniz -->
+    </div>
+
+    <table class="product-table">
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Fiyat</th>
+            <th>KDV</th>
+            <th>Stok Durumu</th>
+            <th>Kaç Adet Alacaksınız?</th>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }} TL</td>
+                <td>{{ product.kdv }}%</td>
+                <td>{% if product.adet > 0 %}Stokta Var{% else %}Stokta Yok{% endif %}</td>
+                <td><input type="number" id="quantity_{{ product.id }}" name="quantity_{{ product.id }}" min="0" max="{{ product.adet }}" value="0"></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p class="total-price">Toplam: {{ total_price }} TL</p>
+    <button type="submit">Sepete Ekle</button>
+
+    <script>
+        function searchProducts() {
+            var searchQuery = document.getElementById('search-input').value;
+            window.location.href = '/products?search_query=' + searchQuery;
+        }
+    </script>
+</body>
+</html>
